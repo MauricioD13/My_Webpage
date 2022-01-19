@@ -1,0 +1,9 @@
+.env/
+.idea/
+db.sqlite3
+themes/
+main/__pycache__/
+main/migrations/
+users/__pycache__/
+users/migrations/
+webpage/__pycache__/

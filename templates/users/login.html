@@ -1,0 +1,26 @@
+{% extends 'users/base.html' %}
+{% block head_content %}
+    <title>Login</title>
+{% endblock %}
+{% block container %}
+    <div class="container">
+
+        <form method="POST" action='{% url 'login' %}'>
+            {% csrf_token %}
+            {% if error %}
+                <p class="alert alert-danger">{{ error }}</p>
+                {% endif %}
+                <h1>Login</h1>
+                <div class="form-login">
+                    <input type="text" class='form-control' placeholder="Username" name="username" />
+                </div>
+                <div class="form-login">
+                    <input type="password" class='form-control' placeholder="Password" name="password"/>
+                </div>
+                <button class="btn btn-primary btn-block mt-5">Sign In</button>
+                
+            </form>
+            
+    </div>
+    
+{% endblock %}
