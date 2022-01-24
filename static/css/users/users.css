@@ -1,26 +1,29 @@
 #auth-container {
   margin-top: 250px;
-  height: 300px;
-  justify-content: center;
-  align-content: center;
+  height: 400px;
   border-radius: 20px;
   background-color: #d5d5d5;
-  margin-left: 300px;
-  margin-right: 300px;
 }
 .form-login {
   margin-top: 20px;
 }
-.container {
+#container-login {
   width: 40%;
-  border-color: black;
+  padding: 20px;
+}
+#container-signup {
+  width: 80%;
 }
 @media screen and (min-width: 400px) {
   #auth-container {
     margin-left: 300px;
     margin-right: 300px;
+    height: 400px;
   }
-  .container {
+  #container-login {
+    width: 80%;
+  }
+  #container-signup {
     width: 80%;
   }
 }

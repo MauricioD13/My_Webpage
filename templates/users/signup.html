@@ -1,0 +1,39 @@
+{% extends 'users/base.html' %}
+
+{% block head_content %}
+    <title>Registro</title>
+{% endblock %}
+
+{% block container %} 
+
+<div id="container-signup">
+    <form method="POST" action='{% url 'signup' %}'>
+        {% csrf_token %}
+        {% if error %}
+            <p class="alert alert-danger">{{ error }}</p>
+            {% endif %}
+            <h1>Registro</h1>
+            <div class="form-signup">
+                <input type="text" class='form-control' placeholder="First Name" name="firstname" />
+            </div>
+            <div class="form-signup">
+                <input type="text" class='form-control' placeholder="Last Name" name="lastname" />
+            </div>
+            <div class="form-signup">
+                <input type="email" class='form-control' placeholder="Email" name="email" />
+            </div>
+            <div class="form-signup">
+                <input type="text" class='form-control' placeholder="Username" name="username" />
+            </div>
+
+            <div class="form-signup">
+                <input type="password" class='form-control' placeholder="Password" name="password"/>
+            </div>
+            <div class="form-signup">
+                <input type="password" class='form-control' placeholder="Password confirmation" name="password_confirmation"/>
+            </div>
+            <button class="btn btn-primary btn-block mt-5">Sign In</button>   
+    </form>
+</div>
+
+{% endblock %}

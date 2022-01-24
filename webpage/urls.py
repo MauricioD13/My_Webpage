@@ -15,7 +15,7 @@ Including another URLconf
 """
 # Django
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.views.generic import TemplateView
 from django.shortcuts import redirect
 from django.conf.urls.static import static
@@ -33,11 +33,6 @@ def root_url(request):
 urlpatterns = [
     path('admin/', admin.site.urls),
     path(route='', view=root_url, name='root'),
-    path(
-        route='main/',
-        view=main_views.main,
-        name='main'),
-    path(route='users/login/',
-         view=users_views.user_login,
-         name='login')
+    path('', include('main.urls')),
+    path('users/', include('users.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
