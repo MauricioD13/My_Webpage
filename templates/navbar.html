@@ -1,38 +1,50 @@
 {%load static %}
-<nav class="navbar navbar-expand-sm navbar-light bg-light" id="navbar">
-  <style>
-    #navbar {
-      padding: 10px;
-    }
-  </style>
-  <a class="navbar-brand" href="{% url 'main' %}">Inicio</a>
-  <button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarNav"
-    aria-controls="navbarNav"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="{% url 'login' %}">
-          Inicio Sesion<span class="sr-only">(current)</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'signup' %}">Registro</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Disabled</a>
-      </li>
-    </ul>
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar" id="myNavbar">
+    <a
+      class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right"
+      href="javascript:void(0);"
+      onclick="toggleFunction()"
+      title="Toggle Navigation Menu"
+    >
+      <i class="fa fa-bars"></i>
+    </a>
+    <a href="#home" class="w3-bar-item w3-button">HOME</a>
+    <a href="#about" class="w3-bar-item w3-button w3-hide-small"
+      ><i class="fa fa-user"></i> ABOUT</a
+    >
+    <a href="#portfolio" class="w3-bar-item w3-button w3-hide-small"
+      ><i class="fa fa-th"></i> PORTFOLIO</a
+    >
+    <a href="#contact" class="w3-bar-item w3-button w3-hide-small"
+      ><i class="fa fa-envelope"></i> CONTACT</a
+    >
+    <a
+      href="#"
+      class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red"
+    >
+      <i class="fa fa-search"></i>
+    </a>
   </div>
-</nav>
+
+  <!-- Navbar on small screens -->
+  <div
+    id="navDemo"
+    class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium"
+  >
+    <a href="#about" class="w3-bar-item w3-button" onclick="toggleFunction()"
+      >ABOUT</a
+    >
+    <a
+      href="#portfolio"
+      class="w3-bar-item w3-button"
+      onclick="toggleFunction()"
+      >PORTFOLIO</a
+    >
+    <a href="#contact" class="w3-bar-item w3-button" onclick="toggleFunction()"
+      >CONTACT</a
+    >
+    <a href="#" class="w3-bar-item w3-button">SEARCH</a>
+  </div>
+</div>
