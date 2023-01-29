@@ -5,3 +5,4 @@ themes/
 main/__pycache__/
 users/__pycache__/
 webpage/__pycache__/
+/static/img/
