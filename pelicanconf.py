@@ -16,13 +16,6 @@ MAIN_MENU = True
 DISPLAY_PAGES_ON_MENU = True
 DISPLAY_CATEGORIES_ON_MENU = True
 
-# Default theme language.
-I18N_TEMPLATES_LANG = "en"
-
-
-
-# Pelican-search Configuration
-STORK_INPUT_OPTIONS = {"stemming": "German", "url_prefix": SITEURL}
 
 TIMEZONE = 'Europe/Madrid'
 
@@ -52,7 +45,7 @@ MENUITEMS = {
     ("Archives","/archives.html"),
     ("Tags","/tags.html"),
 }
-
+THEME_STATIC_DIR = "theme"
 DEFAULT_PAGINATION = 5
 OUTPUT_PATH = "docs/"
 # Uncomment following line if you want document-relative URLs when developing
