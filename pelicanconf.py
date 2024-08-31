@@ -26,7 +26,7 @@ STORK_INPUT_OPTIONS = {"stemming": "German", "url_prefix": SITEURL}
 TIMEZONE = 'Europe/Madrid'
 
 DEFAULT_LANG = 'en'
-THEME = "Flex/"
+THEME = "Flex"
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
 CATEGORY_FEED_ATOM = None
