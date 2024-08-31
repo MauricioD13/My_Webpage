@@ -24,7 +24,7 @@ CONFIG = {
     # Output path. Can be absolute or relative to tasks.py. Default: 'output'
     "deploy_path": SETTINGS["OUTPUT_PATH"],
     # Github Pages configuration
-    "github_pages_branch": "main",
+    "github_pages_branch": "gh-pages",
     "commit_message": f"'Publish site on {datetime.date.today().isoformat()}'",
     # Host and port for `serve`
     "host": "localhost",
@@ -38,8 +38,6 @@ def clean(c):
     if os.path.isdir(CONFIG["deploy_path"]):
         shutil.rmtree(CONFIG["deploy_path"])
         os.makedirs(CONFIG["deploy_path"])
-
-dev-random2
 
 
 @task
