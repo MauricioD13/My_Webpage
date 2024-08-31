@@ -1,0 +1,329 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet/less" type="text/css" href="/theme/stylesheet/style.less">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.1/less.min.js" type="text/javascript"></script>
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+          media="(prefers-color-scheme: dark)"
+    href="/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: dark)"
+          href="/theme/pygments/monokai.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)"
+          href="/theme/pygments/github.min.css">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="/theme/font-awesome/css/solid.css">
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Mauricio Cuello" />
+<meta name="description" content="hill_cipher" />
+<meta name="keywords" content="python, cypher">
+
+
+  <meta property="og:site_name" content="Tech&Coffee"/>
+  <meta property="og:title" content="Our secret messages: Hill Cipher"/>
+  <meta property="og:description" content="hill_cipher"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="/hill_cipher.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2022-10-28 00:00:00+02:00"/>
+  <meta property="article:modified_time" content="2024-10-30 00:00:00+01:00"/>
+  <meta property="article:author" content="/author/mauricio-cuello.html">
+  <meta property="article:section" content="Cypher"/>
+  <meta property="article:tag" content="python"/>
+  <meta property="article:tag" content="cypher"/>
+  <meta property="og:image" content="">
+
+  <title>Tech&Coffee &ndash; Our secret messages: Hill Cipher</title>
+
+
+</head>
+<body >
+
+<aside>
+  <div>
+    <a href="/">
+      <img src="/theme/img/profile.png" alt="" title="">
+    </a>
+
+    <h1>
+      <a href="/"></a>
+    </h1>
+
+
+
+    <nav>
+      <ul class="list">
+
+
+            <li>
+              <a target="_self"
+                 href="/pages/about-me.html#about-me">
+                About me
+              </a>
+            </li>
+
+          <li>
+            <a target="_self" href="/categories.html" >Categories</a>
+          </li>
+      </ul>
+    </nav>
+
+    <ul class="social">
+      <li>
+        <a class="sc-github"
+           href="https://github.com/MauricioD13"
+           target="_blank">
+          <i class="fa-brands fa-github"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-linkedin"
+           href="https://www.linkedin.com/in/mauricio-cuello-a1369b1b5/"
+           target="_blank">
+          <i class="fa-brands fa-linkedin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-medium"
+           href="https://medium.com/@mdavidcuello"
+           target="_blank">
+          <i class="fa-brands fa-medium"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<nav>
+  <a href="/">Home</a>
+
+  <a href="/archives.html">Archives</a>
+  <a href="/tags.html">Tags</a>
+
+
+</nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="hill_cipher">Our secret messages: Hill Cipher</h1>
+    <p>
+      Posted on vie 28 octubre 2022 in <a href="/category/cypher.html">Cypher</a>
+
+    </p>
+  </header>
+
+
+  <div>
+    <p>"Digital freedom stops where that of users begins... Nowadays, digital evolution must no longer be offered to a customer in trade-off between privacy and security. Privacy is not for sale, it's a valuable asset to protect"</p>
+<p>Stephane Nappo</p>
+<p>We meet again, like another casual meeting in a cafe to talk about a cipher method called the Hill Cipher.This method was created by the mathematician Lester Hill in 1929.</p>
+<p>To begin this journey, we need some tools to fully understand this cipher, and we can say that the toolbox is linear algebra. In case you know some linear algebra, you could skip this segment.</p>
+<h3>Tools</h3>
+<p><strong>Determinant:</strong> is a number that characterizes a matrix and is calculated with the following equation:</p>
+<div class="math">$$
+A = \begin{bmatrix} k_{11} &amp; k_{12} \\ k_{21} &amp; k_{22}\end{bmatrix}
+\
+\det(A) = (k_{11} \cdot k_{22}) - (k_{21} \cdot k_{12})
+$$</div>
+<p><strong>Inverse matrix:</strong>  The inverse of a matrix does not always exist, but when it does, it's possible to satisfy the equation.</p>
+<p>This matrix is special because it ensures that we can reconstruct the plaintext from the ciphertext by performing matrix operations.</p>
+<p><strong>Matrix product:</strong></p>
+<p>Each element in the first row of  matrix A must multiplicate with each element in the first column of matrix  B to obtain the correct result, and so on to obtain all the result matrix. The product between matrices obeys the following equation:
+</p>
+<div class="math">$$
+[A^{-1}] = {det(A)}^{-1} * (-1)^{i+j} *(D_{ij})
+$$</div>
+<p>Equation of inverse matriz by  cofactors matrix</p>
+<ul>
+<li>Where <span class="math">\(D_{ij}\)</span> is the subdeterminant formed by deleting the jth row and the ith column of matrix A</li>
+<li>Where <span class="math">\(det(A)^{-1}\)</span> is the multiplicative inverse of <span class="math">\(det(A) mod 26\)</span></li>
+</ul>
+<p>The product between matrix  obey the equation on the right. Each element in the first row of  matrix A must multiplicate with each element in the first column of matrix  B to obtain the correct result, and so on to obtain all the result matrix.</p>
+<p><img alt="matrix" src="../images/cipher/matrix.png"></p>
+<p>The complete explanation of linear algebra is not the focus of this text, and with this previous tools is enough to understand the cipher.</p>
+<h2>Cipher</h2>
+<p>So as not to lose the tradition, the cipher will be explained showing the process, conditions and results, the implementation will be done with a python code. Let´s start preparing the plaintext for the process, first is imperative to translate the letters into numbers, then the key matrix and last multiplicate to code the message.</p>
+<p>For beginning let´s quote a book  "This encryption algorithm takes <em>m</em> successive plaintext letters and substitutes for them <em>m</em>  ciphertext letters. The substitution is determined by <em>m</em>  linear equations[...]"[1]  </p>
+<p>The value of <em>m</em> depends on the length of the key and that´s the first step. We have to choose a key which it length has to be a square number like 4,9,16, etc...  This because the key matrix must be an square matrix.   In the python code for ease, if the length of the key  selected by the user is not a square number then it  complete it with enough z´s.</p>
+<p>If we choose the key "srfn" then the number are 18,17,5,13 and reorganized in a matriz then is</p>
+<div class="math">$$
+K = \begin{pmatrix} 18 &amp; 17 \ 5 &amp; 13 \end{pmatrix} \
+\det(K) = 149
+$$</div>
+<p>Then we apply the following equation a we have the ciphertext:</p>
+<div class="math">$$
+C = (P*K)mod26
+$$</div>
+<div class="math">$$
+P = \begin{pmatrix} 18 &amp; 4 \ 4 &amp; 13\end{pmatrix} \\
+C = \begin{pmatrix} 18 &amp; 4 \ 4 &amp; 13\end{pmatrix} \cdot \begin{pmatrix} 18 &amp; 17 \ 5 &amp; 13\end{pmatrix} = \begin{bmatrix} 344 &amp; 358 \\ 137 &amp; 237\end{bmatrix} \mod 26
+$$</div>
+<p>where C is the ciphertext matrix and P is the plaintext matrix ( is obtain like the key matrix explain above).  </p>
+<p>But I wish life were so simple, there are two  crucial considerations about the key matrix that at first glance it is not taken into account . The first one is the particular way of the matrix product and combine with the second one, the modular operation with matrix, complicated things.</p>
+<p>Piece by piece like Jack the ripper, we need a linear equation and has to be reversible because the receptor want to decrypt the message. For that exists the inverse operation of every operation, that finally is a inverse number, something like:</p>
+<div class="math">$$
+4*2 = 8 \\ 2 = 8* (1/4)
+$$</div>
+<p>Conclution, we can return the operation to obtain one of the factors, that is exactly what we want with this cipher but because the process is with matrix then the inverse matrix must be calculated with the process explained in the tools section.  After all this still exists a problem, some inverse matrix are useless in this cypher because the module operation is a circular operation. Let´s think in this, if I want to return a operation the result have to be unique and in the set of real numbers the condition is met, but with the module operation the result is not unique.</p>
+<div class="math">$$
+(26)mod26 = 0 \\ (52)mod26 = 0
+$$</div>
+<p>To reverse the cipher taking into account the previously explained, the determinant of the key matrix have to meet the following condition:</p>
+<div class="math">$$
+(det(A)*i)mod26 = 1
+$$</div>
+<p>This is the core of the problem, the determinant of the matrix multiply by some number <em>i</em> and all this module 26  must give one. The number <em>i</em> is the modular inverse of the matrix and confirm if the key matrix is valid, this condition apparently is easy to accomplish but can be really annoying. After all this is possible to encript the message, for the example the message "seen" is encrypted with the following process:</p>
+<div class="math">$$
+P = \begin{pmatrix} 18 &amp; 4 \ 4 &amp; 13\end{pmatrix} \
+C = \begin{pmatrix} 18 &amp; 4 \ 4 &amp; 13\end{pmatrix} \cdot \begin{pmatrix} 18 &amp; 17 \ 5 &amp; 13\end{pmatrix} = \begin{pmatrix} 344 &amp; 358 \ 137 &amp; 237\end{pmatrix} \mod 26
+$$</div>
+<div class="math">$$
+C = \begin{bmatrix}  6 &amp; 20 \\ 7 &amp;3\end{bmatrix}
+$$</div>
+<p>Finally encrypted message is "xuhd". If the process was correct then the message can be descripted.</p>
+<h2>Decrypt</h2>
+<div class="math">$$
+K^{-1} =( \begin{bmatrix} 18 &amp; 17 \\ 5 &amp; 13\end{bmatrix}^{-1} * det\begin{bmatrix} 18 &amp; 17 \\ 5 &amp; 13\end{bmatrix} * 11)  mod26 = \begin{bmatrix} 13 &amp; 21 \\ 23 &amp; 16\end{bmatrix}
+$$</div>
+<p>Probably you are really confuse about this inverse matrix <span class="math">\(K^{-1}\)</span>, so let me explain it. The first part</p>
+<p>is the common inverse matrix calculate by the method explained in the tools section, then is multiplicated by the determinant of the key matrix, and then multiplicate all that by the number '11'  which is  the modular inverse and it allow to avoid the problem of modular operation, lastly is the module 26 operation .  This process has to be done because the characteristics of the operation module, but that is related to a topic beyond this text  called <em>fields .</em></p>
+<div class="math">$$
+P = (C \cdot K^{-1}) \mod 26 \\
+P = \begin{pmatrix} 6 &amp; 20 \\ 7 &amp; 3 \end{pmatrix} \cdot \begin{pmatrix} 13 &amp; 21 \\ 23 &amp; 16 \end{pmatrix} \mod 26 \\
+P = \begin{pmatrix} 538 &amp; 446 \\ 160 &amp; 195 \end{pmatrix} \mod 26 = \begin{pmatrix} 18 &amp; 4 \\ 4 &amp; 13 \end{pmatrix}
+$$</div>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="/tag/python.html">python</a>
+      <a href="/tag/cypher.html">cypher</a>
+    </p>
+  </div>
+
+
+
+
+
+
+</article>
+
+<footer>
+<p>&copy;  </p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+  <span class="footer-separator">|</span>
+  Switch to the <a href="javascript:void(0)" onclick="theme.switch(`dark`)">dark</a> | <a href="javascript:void(0)" onclick="theme.switch(`light`)">light</a> | <a href="javascript:void(0)" onclick="theme.switch(`browser`)">browser</a> theme
+  <script id="dark-theme-script"
+          src="/theme/dark-theme/dark-theme.min.js"
+          data-enable-auto-detect-theme="True"
+          data-default-theme="light"
+          type="text/javascript">
+  </script>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Tech&Coffee ",
+  "url" : "",
+  "image": "",
+  "description": ""
+}
+</script>
+</body>
+</html>
