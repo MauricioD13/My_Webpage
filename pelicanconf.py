@@ -5,7 +5,7 @@ SITEURL = ""
 
 PATH = "content"
 
-STATIC_PATHS = ["extra/custom.css","images"]
+STATIC_PATHS = ["extra/custom.css","images","theme"]
 
 EXTRA_PATH_METADATA = {
     "extra/custom.css": {"path": "static/custom.css"},
@@ -47,7 +47,7 @@ MENUITEMS = {
 }
 THEME_STATIC_DIR = "theme"
 DEFAULT_PAGINATION = 5
-OUTPUT_PATH = "docs/"
+OUTPUT_PATH = "docs"
 # Uncomment following line if you want document-relative URLs when developing
 # RELATIVE_URLS = True
 
