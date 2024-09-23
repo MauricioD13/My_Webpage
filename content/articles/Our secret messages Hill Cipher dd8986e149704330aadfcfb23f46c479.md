@@ -1,11 +1,11 @@
 Title: Our secret messages: Hill Cipher
-Date: 2022-10-28
+Date: 2022-01-28
 Modified: 2024-10-30
 Category: Cypher
 Tags: python,cypher
 Slug: hill_cipher
 Authors: Mauricio Cuello
-Summary: hill_cipher
+Summary: Following the previous article about Caesar cypher, here is a more complicated cypher invented by Lester Hill in 1929 using linear algebra to encrypt the messages.
 Save_as: hill_cipher.html
 status: published
 keywords: hill_cipher.html

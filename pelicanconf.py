@@ -20,7 +20,7 @@ DISPLAY_CATEGORIES_ON_MENU = True
 TIMEZONE = 'Europe/Madrid'
 
 DEFAULT_LANG = 'en'
-THEME = "Flex/"
+THEME = "dev-random/"
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
 CATEGORY_FEED_ATOM = None
@@ -31,6 +31,7 @@ AUTHOR_FEED_RSS = None
 # Blogroll
 LINKS = (
     ("Categories","/categories.html"),
+    
 )
 
 # Social widget
@@ -47,10 +48,11 @@ MENUITEMS = {
 }
 THEME_STATIC_DIR = "theme"
 DEFAULT_PAGINATION = 5
-OUTPUT_PATH = "docs"
+OUTPUT_PATH = "../MauricioD13.github.io"
+OUTPUT_RETENTION = [".git","theme/img/profile.png","CNAME"]
 # Uncomment following line if you want document-relative URLs when developing
 # RELATIVE_URLS = True
-
+DELETE_OUTPUT_DIRECTORY = True
 THEME_COLOR_AUTO_DETECT_BROWSER_PREFERENCE = True
 THEME_COLOR_ENABLE_USER_OVERRIDE = True
 

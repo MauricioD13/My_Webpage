@@ -5,7 +5,7 @@ Category: Cloud
 Tags: AWS,Cloud,EC2,S3,Linux
 Slug: aws_history0
 author: Mauricio Cuello
-Summary: AWS History 0 - The Hidden Costs of Poor Cloud Management
+Summary: The beginning of some histories about AWS cloud. This one is about EC2, S3 configuration and a little bit of Linux server management
 Save_as: aws_history0.html
 status: published
 keywords: cloud,aws,ec2,s3,linux

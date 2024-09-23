@@ -1,11 +1,11 @@
 Title: Our secret messages: Caesar Cypher
 Date: 2022-08-30
-Modified: 2022-08-30
+Modified: 2021-04-16
 Category: Cypher
 Tags: Python,Cypher
 Slug: caesar_cypher
 author: Mauricio Cuello
-Summary: Our secret messages: Caesar Cypher
+Summary: The ciphers are the base of our security in the internet but not just the internet, in the ancient world already were the need to pass secret messages. This article is a short explanation of Caesar cypher.
 Save_as: caesar_cypher.html
 status: published
 keywords: cypher,python,programming
