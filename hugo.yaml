@@ -1,4 +1,4 @@
-baseURL: https://example.org/
+baseURL: https://tech-mauricio.me
 languageCode: en-us
 title: Tech and Coffee
 theme: ["PaperMod"]
@@ -21,7 +21,7 @@ params:
       - name: About me
         url: "/about"
   math: true
-
+  social: true
   socialIcons:
     - name: "github"
       url: "https://github.com/MauricioD13"
@@ -52,10 +52,6 @@ menu:
       name: Categories
       url: /categories/
       weight: 10
-    - identifier: tags
-      name: Tags
-      url: /tags/
-      weight: 20
 
 taxonomies:
   category: categories
