@@ -1,6 +1,6 @@
 ---
 date: '2022-01-28'
-draft: true
+draft: false
 title: 'Our secret messages: Hill Cipher'
 summary: 'Following the previous article about Caesar cypher, here is a more complicated cypher invented by Lester Hill in 1929 using linear algebra to encrypt the messages.
 '

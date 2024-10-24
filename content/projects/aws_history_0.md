@@ -1,10 +1,10 @@
 ---
 date: '2024-08-30'
-draft: true
+draft: false
 title: 'AWS History 0 - The Hidden Costs of Poor Cloud Management'
 summary: 'The beginning of some histories about AWS cloud. This one is about EC2, S3 configuration and a little bit of Linux server management'
 cover: 
-  image: "/aws_history_0/AWS_synthwave.jpg"
+  image: "/aws_history_0/aws_synthwave_0.jpg"
 categories:
 - Cloud
 - AWS

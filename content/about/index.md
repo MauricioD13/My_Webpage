@@ -1,6 +1,6 @@
 ---
-date: '2024-10-22T16:48:03+02:00'
-draft: true
+date: ''
+draft: false
 title: 'About'
 ---
 
@@ -11,8 +11,6 @@ title: 'About'
 **Ciberseguridad | Consultor Cloud**
 
 Madrid, Spain  
-Phone: +34-648413525  
-Email: <mdavidcuello@gmail.com>
 
 ## About Me
 
@@ -115,4 +113,4 @@ Aparcacoches
 ## Idiomas
 
 - Español: Nativo  
-- Inglés: B1  
+- Inglés: B2  
