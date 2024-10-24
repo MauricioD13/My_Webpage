@@ -6,28 +6,13 @@
     <description>Recent content on Tech and Coffee</description>
     <generator>Hugo -- 0.136.4</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 22 Oct 2024 16:48:03 +0200</lastBuildDate>
+    <lastBuildDate>Fri, 30 Aug 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>About</title>
-      <link>http://localhost:1313/about/</link>
-      <pubDate>Tue, 22 Oct 2024 16:48:03 +0200</pubDate>
-      <guid>http://localhost:1313/about/</guid>
-      <description>&lt;h1 id=&#34;mauricio-cuello&#34;&gt;Mauricio Cuello&lt;/h1&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/profile.jpg&#34; alt=&#34;profile&#34;  /&gt;
-&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Ciberseguridad | Consultor Cloud&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Madrid, Spain&lt;br&gt;
-Phone: +34-648413525&lt;br&gt;
-Email: &lt;a href=&#34;mailto:mdavidcuello@gmail.com&#34;&gt;mdavidcuello@gmail.com&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&#34;about-me&#34;&gt;About Me&lt;/h2&gt;
-&lt;p&gt;Ingeniero Electrónico apasionado por la nube (AWS, Azure) y la ciberseguridad, con experiencia en evaluaciones de seguridad PCI DSS. Hábil en el diseño e implementación de infraestructuras de red seguras y en el uso de herramientas de monitoreo de seguridad. Dominio de Python, C, bases de datos SQL y administración de servidores Linux. Experiencia reciente en el aprendizaje y aplicación de Terraform para proyectos de despliegue en AWS, mejorando la eficiencia y escalabilidad de las infraestructuras cloud. Colaborador, comunicativo y altamente comprometido con la innovación y la excelencia técnica.&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>AWS History 0 - The Hidden Costs of Poor Cloud Management</title>
-      <link>http://localhost:1313/posts/aws_history_0/</link>
+      <link>http://localhost:1313/projects/aws_history_0/</link>
       <pubDate>Fri, 30 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/aws_history_0/</guid>
+      <guid>http://localhost:1313/projects/aws_history_0/</guid>
       <description>The beginning of some histories about AWS cloud. This one is about EC2, S3 configuration and a little bit of Linux server management</description>
     </item>
     <item>
@@ -43,6 +28,19 @@ Email: &lt;a href=&#34;mailto:mdavidcuello@gmail.com&#34;&gt;mdavidcuello@gmail.
       <pubDate>Fri, 16 Apr 2021 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/our_secret_messages_caesar_cipher/</guid>
       <description>The ciphers are the base of our security in the internet but not just the internet, in the ancient world already were the need to pass secret messages. This article is a short explanation of Caesar cypher.</description>
+    </item>
+    <item>
+      <title>About</title>
+      <link>http://localhost:1313/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/about/</guid>
+      <description>&lt;h1 id=&#34;mauricio-cuello&#34;&gt;Mauricio Cuello&lt;/h1&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/profile.jpg&#34; alt=&#34;profile&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Ciberseguridad | Consultor Cloud&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Madrid, Spain&lt;/p&gt;
+&lt;h2 id=&#34;about-me&#34;&gt;About Me&lt;/h2&gt;
+&lt;p&gt;Ingeniero Electrónico apasionado por la nube (AWS, Azure) y la ciberseguridad, con experiencia en evaluaciones de seguridad PCI DSS. Hábil en el diseño e implementación de infraestructuras de red seguras y en el uso de herramientas de monitoreo de seguridad. Dominio de Python, C, bases de datos SQL y administración de servidores Linux. Experiencia reciente en el aprendizaje y aplicación de Terraform para proyectos de despliegue en AWS, mejorando la eficiencia y escalabilidad de las infraestructuras cloud. Colaborador, comunicativo y altamente comprometido con la innovación y la excelencia técnica.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
