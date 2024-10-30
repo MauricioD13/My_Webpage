@@ -10,4 +10,3 @@ Then edit the markdown file
 # Configuration
 
 Add condition to call the template -> Math config
-

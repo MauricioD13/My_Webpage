@@ -72,3 +72,20 @@ markup:
             - - \(
               - \)
         enable: true
+
+defaultContentLanguage: en
+languages:
+  en:
+    disable: false
+    languageCode: en
+    languageDirection: en-us
+    languageName: English
+    contentDir: content/english
+    weight: 10
+  es:
+    disable: false
+    languageCode: es
+    languageDirection: es-en
+    languageName: Spanish
+    contentDir: content/español
+    weight: 20

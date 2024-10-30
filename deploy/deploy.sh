@@ -5,6 +5,15 @@
 
 str="'$*'"
 
+#if [[ -z "${VIRTUAL_ENV}" ]]; then
+#    dependency=$( pip freeze | grep -i semgrep )
+#    if [[ -z dependency ]]; then
+        
+#else
+
+
+cd ../
+
 if [ -d /$HOME/MauricioD13.github.io ]; then
 
     hugo -d $HOME/MauricioD13.github.io/
