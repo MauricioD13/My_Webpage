@@ -1,0 +1,60 @@
+/*
+This is just a placeholder blank stylesheet so as to support adding custom styles budled with theme's default styles
+
+Read https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#bundling-custom-css-with-themes-assets for more info
+*/
+.copy-code {
+    display: none;
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    color: rgba(255, 255, 255, 0.8);
+    background: rgba(46, 46, 51, 0.8);
+    border-radius: var(--radius);
+    padding: 0 5px;
+    font-size: 14px;
+    user-select: none;
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        --theme: linear-gradient(180deg, rgba(154,223,250,1) 15%, rgba(9,183,235,1) 80%, rgba(106,92,235,1) 100%);
+        --entry: rgb(255, 255, 255);
+        --primary: rgb(0, 0, 0);
+        --secondary: rgb(0, 0, 0);
+        --tertiary: rgb(100, 170, 173);
+        --content: rgb(0, 0, 0);
+        --code-block-bg: rgb(48, 48, 55);
+        --code-bg: rgb(240, 150, 255);
+        --border: rgb(0, 0, 0);
+    }
+
+    .list {
+        background: var(--theme);
+    }
+
+    .list:not(.dark)::-webkit-scrollbar-track {
+        background: 0 0;
+    }
+
+    .list:not(.dark)::-webkit-scrollbar-thumb {
+        border-color: var(--theme);
+    }
+}
+.dark {
+    --theme: linear-gradient(180deg, rgba(0,0,0,1) 40%, rgba(106,92,235,1) 80%, rgba(228,20,240,1) 100%);
+    --entry: rgb(46, 46, 51);
+    --primary: rgb(9, 183, 235);
+    --secondary: rgb(155, 156, 157);
+    --tertiary: rgb(65, 66, 68);
+    --content: rgb(196, 196, 197);
+    --code-block-bg: rgb(46, 46, 51);
+    --code-bg: rgb(55, 56, 62);
+    --border: rgb(51, 51, 51);
+}
+
+figure {
+    width: 50%;
+    align-content: center;
+    text-align: center;
+    align-self: center;
+}

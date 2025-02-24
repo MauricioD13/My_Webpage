@@ -1,0 +1,78 @@
+baseURL: https://example.org/
+languageCode: en-us
+title: Tech and Coffee
+theme: ["PaperMod"]
+params:
+  subtitle: Some tech talks with a magnanimous coffee
+  defaultTheme: auto
+  profileMode:
+    enabled: true
+    title: "Mauricio Cuello"
+    subtitle: "Something about cloud, security and coffee"
+    imageUrl: "funko_hacker.jpg"
+    imageTitle: "Profile"
+    imageWidth: 200
+    imageHeight: 200
+    buttons:
+      - name: Posts
+        url: "/posts"
+      - name: Projects
+        url: "/projects"
+      - name: About me
+        url: "/about"
+  math: true
+
+  socialIcons:
+    - name: "github"
+      url: "https://github.com/MauricioD13"
+    - name: "instagram"
+      url: "https://www.instagram.com/mdavidcuello/"
+    - name: "linkedin"
+      url: "https://www.linkedin.com/in/mauricio-cuello-a1369b1b5/"
+    - name: "medium"
+      url: "https://medium.com/@mdavidcuello"
+
+  ShowReadingTime: true
+  ShowShareButtons: true
+  ShowPostNavLinks: true
+  ShowCodeCopyButtons: true
+  ShareButtons: ["linkedin"]
+
+menu:
+  main:
+    - identifier: posts
+      name: Posts
+      url: /posts/
+      weight: 1
+    - identifier: projects
+      name: Projects
+      url: /projects/
+      weight: 5
+    - identifier: categories
+      name: Categories
+      url: /categories/
+      weight: 10
+    - identifier: tags
+      name: Tags
+      url: /tags/
+      weight: 20
+
+taxonomies:
+  category: categories
+  serie: series
+  tag: tags
+
+markup:
+  goldmark:
+    extensions:
+      passthrough:
+        delimiters:
+          block:
+            - - \[
+              - \]
+            - - $$
+              - $$
+          inline:
+            - - \(
+              - \)
+        enable: true

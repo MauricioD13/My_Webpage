@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en" dir=" auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>AWS History 0 - The Hidden Costs of Poor Cloud Management | Tech and Coffee</title>
+<meta name="keywords" content="AWS, Cloud, EC2, S3, Linux">
+<meta name="description" content="The beginning of some histories about AWS cloud. This one is about EC2, S3 configuration and a little bit of Linux server management">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/posts/aws_history_0/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.a126c1f5821593027d2a70ba8b9d1ce4a9ffde0658b3cc24617de6dfc40caec2.css" integrity="sha256-oSbB9YIVkwJ9KnC6i50c5Kn/3gZYs8wkYX3m38QMrsI=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/aws_history_0/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+    
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<script>
+    MathJax = {
+        tex: {
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],  
+            inlineMath: [['\\(', '\\)']]                  
+        }
+    };
+</script>
+    
+
+</head>
+
+<body class="" id="
+    top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Tech and Coffee (Alt + H)">Tech and Coffee</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/posts/" title="Posts">
+                    <span>Posts</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/projects/" title="Projects">
+                    <span>Projects</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      AWS History 0 - The Hidden Costs of Poor Cloud Management
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h1>
+    <div class="post-meta"><span title='2024-08-30 00:00:00 +0000 UTC'>August 30, 2024</span>&nbsp;·&nbsp;5 min
+
+</div>
+  </header> 
+<figure class="entry-cover"><img loading="eager" src="http://localhost:1313/aws_history_0/AWS_synthwave.jpg" alt="">
+        
+</figure>
+  <div class="post-content"><h1 id="introduction">Introduction<a hidden class="anchor" aria-hidden="true" href="#introduction">#</a></h1>
+<p>I felt inspired to write this article because I could not believe the number of poor-quality software providers in the market. Some of them are taking advantage of people who do not have the technical background to understand the solutions proposed, and charging more money for it. By coincidence, I started working with an e-commerce shop that hosts its resources on AWS. They used to work with a software provider, but the work ethics of this provider were far from the best in the market, to put it mildly.</p>
+<p>The issues were the following, and the reasons why I started working there:</p>
+<ul>
+<li>Billing</li>
+<li>Backups</li>
+<li>Crash of the server</li>
+</ul>
+<p>Long story short, they set up Magento 2 with the necessary configurations, but due to some commercial relationship issues, they stopped providing support to the shop. Through a mutual friend, I contacted the owners of the shop to help troubleshoot the server.</p>
+<p>The technological stack of the shop is:</p>
+<ul>
+<li>EC2 instance</li>
+<li>S3 bucket for the backups (in the provider’s AWS account)</li>
+<li>Ubuntu Server</li>
+<li>Apache</li>
+<li>Magento</li>
+</ul>
+<p>When I started examining the configurations of the EC2 instance, the first thing I noticed was that the instance type was the monstrosity of a c6i.2xlarge. I call it a monstrosity because the peak CPU usage is only 20% even on the busiest days, such as Christmas or other special occasions. The owners said that the provider had only explained that they needed that instance type; otherwise, the development would not work. One important thing about public clouds is that they can be very expensive if the appropriate configurations are not made, and if you&rsquo;re new to AWS, it&rsquo;s challenging to configure it well.</p>
+<h1 id="changes">Changes<a hidden class="anchor" aria-hidden="true" href="#changes">#</a></h1>
+<p>The billing of AWS was pretty high for the usage that the shop was giving to the services and mainly the server was crashing.</p>
+<h2 id="server-crashed">Server crashed<a hidden class="anchor" aria-hidden="true" href="#server-crashed">#</a></h2>
+<p>The website was crased, so I started adding a rule to the security group of the instance to access the server via SSH, and restarting the server. In the server, I did the 101 of the linux server administration that is to check all the basic metrics: RAM, CPU, storage and logs, using some common commands like <code>htop</code>, <code>df -h</code>, <code>systemctl status</code> , <code>journalctl -xe</code> ,etc…</p>
+<h3 id="logs">Logs<a hidden class="anchor" aria-hidden="true" href="#logs">#</a></h3>
+<p>In the logs of Magento it said that there was a issue with the writing of some data that was standard procedure of the CMS, and because of that, I think that the problem was not the Magento configuration, instated was a server problem related to memory/storage.</p>
+<h3 id="storage">Storage<a hidden class="anchor" aria-hidden="true" href="#storage">#</a></h3>
+<p>The space available was pretty low, this was a clue of the problem. I took some data of this from Sunday in the day and it look like this:
+<img loading="lazy" src="/aws_history_0/Pasted%20image%2020240805093409.png" alt="storage"  />
+
+And Monday morning was like this:
+<img loading="lazy" src="/aws_history_0/Pasted%20image%2020240805093430.png" alt="storage"  />
+</p>
+<p>That was why the server was crashing but it was not the root cause.</p>
+<h3 id="cron">Cron<a hidden class="anchor" aria-hidden="true" href="#cron">#</a></h3>
+<p>The behavior of the storage availability indicated that there was a scheduled task running on Sunday night. Therefore, I examined the crontab and discovered numerous jobs for creating database and website backups - daily, weekly, and monthly. Two of the cron jobs were key: the first was responsible for performing the cleanup, which was not occurring, and the second was the S3 backup sync. The sync command was pointing to an S3 bucket that was not owned by the shop.</p>
+<p><img loading="lazy" src="/aws_history_0/Pasted%20image%2020240805093527.png" alt="cron"  />
+</p>
+<p>In the cleanup script was a typo that was really easy to fix. The scripts delete recursively all the data that were in some specific directories that were already backed up.</p>
+<h3 id="backup-in-s3-bucket">Backup in S3 bucket<a hidden class="anchor" aria-hidden="true" href="#backup-in-s3-bucket">#</a></h3>
+<p>To resolve the S3 backup issue, I created a new S3 bucket in the shop&rsquo;s own account and updated the sync command to point to this bucket. Additionally, modified the scheduled task timing to send data weekly on Sundays and monthly on the first day of each month.</p>
+<p><img loading="lazy" src="/aws_history_0/Pasted%20image%2020240805093544.png" alt="backup"  />
+</p>
+<p>To allow connection between services, I created an IAM role that allows the EC2 instance to put objects into the S3.</p>
+<p>Finally, I attached the IAM role to the instance and proved the connection between the EC2 and the S3 bucket.</p>
+<h2 id="instance-type-and-aws-compute-optimizer">Instance type and AWS Compute Optimizer<a hidden class="anchor" aria-hidden="true" href="#instance-type-and-aws-compute-optimizer">#</a></h2>
+<p>I used AWS Compute Optimizer to determine the optimal EC2 instance, which suggested an r6i.large. Magento documentation recommends compute-optimized instances (C-type) for best performance. However, considering the c6i.2xlarge has substantial memory and the owners mentioned custom code connecting Magento to their stock software, I opted for the r6i.large with 16 GB RAM.</p>
+<p>Before initiating the process, I created backups of both Magento and the database. Since they were using an Elastic IP (EIP), there was no concern about DNS provider issues when stopping the instance. Then proceeded to stop the instance, change the instance type, and the process completed successfully.</p>
+<p><img loading="lazy" src="/aws_history_0/Pasted%20image%2020240805093626.png" alt="instance"  />
+</p>
+<h1 id="conclusions">Conclusions<a hidden class="anchor" aria-hidden="true" href="#conclusions">#</a></h1>
+<ul>
+<li>There was a 64% cost optimization after making these configurations. Therefore, it&rsquo;s really important in a cloud environment to know what the proper adjustments are for your business needs. The model of AWS is pay-per-use; hence, it&rsquo;s the responsibility of the customer to configure the services in the best way possible.</li>
+<li>Sometimes if you own an e-commerce shop and your store is in the cloud, it is wise to seek a second opinion when you think there is suspicious behavior in the AWS services. Because there are many unreliable providers of cloud consulting, it&rsquo;s also prudent to verify if a provider is a certified partner here: <a href="https://partners.amazonaws.com/">https://partners.amazonaws.com/</a>
+<ul>
+<li>I know that providers are not always partners of AWS (it has its challenges), but it is a starting point. Especially when the provider claims they are.</li>
+</ul>
+</li>
+</ul>
+<p>Enjoy your cloud journey</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/aws/">AWS</a></li>
+      <li><a href="http://localhost:1313/tags/cloud/">Cloud</a></li>
+      <li><a href="http://localhost:1313/tags/ec2/">EC2</a></li>
+      <li><a href="http://localhost:1313/tags/s3/">S3</a></li>
+      <li><a href="http://localhost:1313/tags/linux/">Linux</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="http://localhost:1313/posts/our_secret_messages_hill_cipher/">
+    <span class="title">Next »</span>
+    <br>
+    <span>Our secret messages: Hill Cipher</span>
+  </a>
+</nav>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share AWS History 0 - The Hidden Costs of Poor Cloud Management on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2faws_history_0%2f&amp;title=AWS%20History%200%20-%20The%20Hidden%20Costs%20of%20Poor%20Cloud%20Management&amp;summary=AWS%20History%200%20-%20The%20Hidden%20Costs%20of%20Poor%20Cloud%20Management&amp;source=http%3a%2f%2flocalhost%3a1313%2fposts%2faws_history_0%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2024 <a href="http://localhost:1313/">Tech and Coffee</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

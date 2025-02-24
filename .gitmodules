@@ -1,3 +1,9 @@
+<<<<<<< HEAD
 [submodule "Flex"]
 	path = Flex
 	url 	= https://github.com/alexandrevicenzi/Flex.git 
+=======
+[submodule "themes/PaperMod"]
+	path = themes/PaperMod
+	url = https://github.com/adityatelange/hugo-PaperMod.git
+>>>>>>> 82bf06a (First deployable version)
