@@ -18,6 +18,8 @@ tags:
 
 # Introduction
 
+![Process](/aws_history_1/process.svg)
+
 **A sudden server crash can be every developer's nightmare, and that's exactly where our story begins.** One afternoon, our server went down without warning, setting off a series of unusual and challenging events. The server was configured with Nginx as a reverse proxy and PHP with Laravel for the backend—a setup that had been stable until now.
 
 As I began to assess the problem, I discovered alarming evidence in the Nginx logs: our server was under attack. Originating from Singapore, the attack involved sophisticated port scanning and subdomain fuzzing using brute-force methods. The sheer volume of malicious traffic caused a significant spike, overloading the server and leading to multiple crashes.

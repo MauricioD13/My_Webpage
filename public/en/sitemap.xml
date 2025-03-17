@@ -27,19 +27,19 @@
     <loc>http://localhost:1313/tags/devops/</loc>
     <lastmod>2025-02-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/programming/</loc>
+    <loc>http://localhost:1313/categories/programming/</loc>
     <lastmod>2025-02-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/programming/</loc>
+    <loc>http://localhost:1313/tags/programming/</loc>
     <lastmod>2025-02-23T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/projects/</loc>
     <lastmod>2025-02-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/python/</loc>
+    <loc>http://localhost:1313/categories/python/</loc>
     <lastmod>2025-02-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/python/</loc>
+    <loc>http://localhost:1313/tags/python/</loc>
     <lastmod>2025-02-23T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/</loc>
@@ -68,16 +68,16 @@
                 href="http://localhost:1313/"
                 />
   </url><url>
-    <loc>http://localhost:1313/tags/terraform/</loc>
-    <lastmod>2025-02-23T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/categories/terraform/</loc>
     <lastmod>2025-02-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/aws/</loc>
-    <lastmod>2024-08-30T00:00:00+00:00</lastmod>
+    <loc>http://localhost:1313/tags/terraform/</loc>
+    <lastmod>2025-02-23T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/aws/</loc>
+    <lastmod>2024-08-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/aws/</loc>
     <lastmod>2024-08-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/projects/aws_history_0/</loc>
@@ -86,10 +86,10 @@
     <loc>http://localhost:1313/projects/aws_history_1/</loc>
     <lastmod>2024-08-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/cloud/</loc>
+    <loc>http://localhost:1313/categories/cloud/</loc>
     <lastmod>2024-08-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/cloud/</loc>
+    <loc>http://localhost:1313/tags/cloud/</loc>
     <lastmod>2024-08-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/ec2/</loc>
@@ -104,10 +104,10 @@
     <loc>http://localhost:1313/posts/</loc>
     <lastmod>2022-01-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/cipher/</loc>
+    <loc>http://localhost:1313/categories/cipher/</loc>
     <lastmod>2022-01-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/cipher/</loc>
+    <loc>http://localhost:1313/tags/cipher/</loc>
     <lastmod>2022-01-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/our_secret_messages_hill_cipher/</loc>

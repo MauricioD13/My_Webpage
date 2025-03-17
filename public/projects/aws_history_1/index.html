@@ -138,6 +138,8 @@
         
 </figure>
   <div class="post-content"><h1 id="introduction">Introduction<a hidden class="anchor" aria-hidden="true" href="#introduction">#</a></h1>
+<p><img loading="lazy" src="/aws_history_1/process.svg" alt="Process"  />
+</p>
 <p><strong>A sudden server crash can be every developer&rsquo;s nightmare, and that&rsquo;s exactly where our story begins.</strong> One afternoon, our server went down without warning, setting off a series of unusual and challenging events. The server was configured with Nginx as a reverse proxy and PHP with Laravel for the backend—a setup that had been stable until now.</p>
 <p>As I began to assess the problem, I discovered alarming evidence in the Nginx logs: our server was under attack. Originating from Singapore, the attack involved sophisticated port scanning and subdomain fuzzing using brute-force methods. The sheer volume of malicious traffic caused a significant spike, overloading the server and leading to multiple crashes.</p>
 <p>Being an EC2 instance on AWS, I knew immediate action was required to mitigate the damage. I quickly modified the security groups to block incoming traffic from the malicious IP addresses and closed an open port above 6000 after verifying the services utilizing it. This rapid response helped stabilize the server, but I realized this was only a temporary fix.</p>
